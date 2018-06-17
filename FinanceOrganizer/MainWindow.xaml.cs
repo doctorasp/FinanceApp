@@ -1,9 +1,10 @@
 ﻿using BLL.Services;
 using DAL.EF;
 using DAL.Entities;
+using LiveCharts;
+using LiveCharts.Wpf;
 using System;
 using System.Data.Entity;
-using System.Globalization;
 using System.Windows;
 
 namespace FinanceOrganazer
@@ -12,9 +13,16 @@ namespace FinanceOrganazer
     public partial class MainWindow : Window
     {
         DatabaseContext _context;
+        ChartService cs;
         public MainWindow()
         {
             InitializeComponent();
+
+            cs = new ChartService();
+
+            this.pieChart1.Series = cs.buildPie();
+
+            this.pieChart1.LegendLocation = LegendLocation.Bottom;
 
             _context = new DatabaseContext();
             _context.Electricity.Load();
@@ -26,6 +34,19 @@ namespace FinanceOrganazer
             gasGrid.ItemsSource = _context.Gas.Local.ToBindingList();
             this.Closing += MainWindow_Closing;
         }
+
+        private void Chart_OnDataClick(object sender, ChartPoint chartpoint)
+        {
+            var chart = (LiveCharts.Wpf.PieChart)chartpoint.ChartView;
+
+            //clear selected slice.
+            foreach (PieSeries series in chart.Series)
+                series.PushOut = 0;
+
+            var selectedSeries = (PieSeries)chartpoint.SeriesView;
+            selectedSeries.PushOut = 8;
+        }
+
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -195,5 +216,12 @@ namespace FinanceOrganazer
             }
             _context.SaveChanges();
         }
+
+        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+           
+
+        }
     }
+
 }
