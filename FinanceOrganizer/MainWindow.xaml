@@ -1,0 +1,138 @@
+﻿<Window x:Class="FinanceOrganazer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinanceOrganazer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="643.447" Width="881.5">
+
+    <Grid Margin="0,0,2,73">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="61*"/>
+            <ColumnDefinition Width="137*"/>
+            <ColumnDefinition Width="29*"/>
+            <ColumnDefinition Width="372*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Rectangle Fill="#FFECECEC" HorizontalAlignment="Left" Height="547" VerticalAlignment="Top" Width="106" Margin="0,62,0,-70" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" Margin="574,73,170,-73" Grid.Column="3" Grid.Row="1"/>
+        <Rectangle Fill="#FF595959" HorizontalAlignment="Left" Height="62" VerticalAlignment="Top" Width="875" Grid.ColumnSpan="4" Margin="0,0,-3,0"/>
+        <Label Content="Finance Free" HorizontalAlignment="Left" Margin="17,0,0,0" VerticalAlignment="Top" Background="{x:Null}" FontSize="22" FontWeight="Bold" Foreground="White" Grid.Column="1"/>
+        <Label Content="v1.0 (64-bit)" Grid.Column="1" HorizontalAlignment="Left" Margin="17,32,0,0" VerticalAlignment="Top" Foreground="White" FontSize="11"/>
+
+        <TabControl HorizontalAlignment="Left" Height="545" Margin="10,67,0,-73" VerticalAlignment="Top" Width="852" TabStripPlacement="Left" Grid.ColumnSpan="4" Grid.RowSpan="2">
+            <TabItem Header="Дані" Height="60">
+                <Grid Background="#FFE5E5E5">
+                    <TabControl HorizontalAlignment="Left" Height="542" Margin="0,0,0,-3" VerticalAlignment="Top" Width="769" SelectionChanged="TabControl_SelectionChanged">
+                        <TabItem Header="Електроенергія">
+                            <Grid Background="#FFE5E5E5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="79*"/>
+                                    <ColumnDefinition Width="19*"/>
+                                    <ColumnDefinition Width="17*"/>
+                                    <ColumnDefinition Width="141*"/>
+                                    <ColumnDefinition Width="143*"/>
+                                    <ColumnDefinition Width="364*"/>
+                                </Grid.ColumnDefinitions>
+                                <DataGrid AutoGenerateColumns="False" x:Name="electricityGrid" Margin="0,59,181,75" Grid.ColumnSpan="6">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Binding="{Binding Date}" Header="Дата" Width="*"/>
+                                        <DataGridTextColumn Binding="{Binding StartValue}" Header="Початкові показники" Width="*"/>
+                                        <DataGridTextColumn Binding="{Binding EndValue}" Header="Кінцеві показники" Width="*"/>
+                                        <DataGridTextColumn Binding="{Binding Consumed}" Header="Спожито кВт∙год" Width="*"/>
+                                        <DataGridTextColumn Binding="{Binding PricePer100}" Header="Ціна до 100* кВт∙год" Width="*"/>
+                                        <DataGridTextColumn Binding="{Binding PriceAmong100}" Header="понад 100* кВт∙год" Width="*"/>
+                                        <DataGridTextColumn Binding="{Binding Price}" Header="Загальна сума" Width="*"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <Button x:Name="updateButton" Content="Оновити" Click="updateButton_Click" Margin="25,462,10,22" Width="Auto" Grid.ColumnSpan="3" Foreground="White" Background="#FF4165E2" />
+                                <Button x:Name="deleteButton" Content="Видалити" Click="deleteButton_Click" Margin="22,462,39,22" Width="Auto" Grid.Column="3" Foreground="White" Background="#FF4165E2" />
+                                <TextBox Grid.Column="5" HorizontalAlignment="Left" x:Name="startPrice" Height="23" Margin="197,38,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
+                                <Label Content="Початкові показники:" Grid.Column="5" HorizontalAlignment="Left" Margin="197,10,0,0" VerticalAlignment="Top"/>
+                                <TextBox Grid.Column="5" HorizontalAlignment="Left" x:Name="endPrice"  Height="23" Margin="197,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
+                                <Label Content="Кінцеві показники:" Grid.Column="5"  HorizontalAlignment="Left" Margin="197,84,0,0" VerticalAlignment="Top"/>
+                                <DatePicker Grid.Column="5" HorizontalAlignment="Left" x:Name="date" Margin="197,189,0,0" VerticalAlignment="Top" Width="157"/>
+                                <Label Content="Поточна дата:" Grid.Column="5"  HorizontalAlignment="Left" Margin="197,145,0,0" VerticalAlignment="Top"/>
+                                <TextBox Grid.Column="5" HorizontalAlignment="Left" x:Name="tariffPer100" Height="23" Margin="197,298,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" Text="0,9"/>
+                                <Label Content="Тариф до 100* кВт∙год" Grid.Column="5"  HorizontalAlignment="Left" Margin="197,270,0,0" VerticalAlignment="Top"/>
+                                <TextBox Grid.Column="5" HorizontalAlignment="Left" x:Name="tariffAmong100" Height="23" Margin="197,389,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" Text="1,68"/>
+                                <Label Content="Понад до 100* кВт∙год" Grid.Column="5"  HorizontalAlignment="Left" Margin="196,343,0,0" VerticalAlignment="Top"/>
+                                <Button Content="Розрахувати" Grid.Column="5" HorizontalAlignment="Left" Margin="230,462,0,0" VerticalAlignment="Top" Width="98" Click="Button_Click" Foreground="White" Background="#FF4165E2" Height="30"/>
+                                <Image HorizontalAlignment="Left" Height="46" Margin="10,8,0,0" VerticalAlignment="Top" Width="51" Source="res/elect.png"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Вода">
+                            <Grid Background="#FFE5E5E5" Margin="0,0,0,-3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="70*"/>
+                                    <ColumnDefinition Width="387*"/>
+                                    <ColumnDefinition Width="307*"/>
+                                </Grid.ColumnDefinitions>
+                                <DataGrid AutoGenerateColumns="False" x:Name="waterGrid" Margin="0,62,181,78" Grid.ColumnSpan="3">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Binding="{Binding Date}" Header="Дата" Width="*"/>
+                                        <DataGridTextColumn Binding="{Binding CounterValue}" Header="Значення лічильника" Width="*"/>
+                                        <DataGridTextColumn Binding="{Binding Price}" Header="Ціна до сплати" Width="*"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <Button x:Name="updateWaterButton" Content="Оновити" Click="updateButton_Click" Margin="25,462,351,25" Width="Auto" Grid.ColumnSpan="2" Foreground="White" Background="#FF4165E2" />
+                                <Button x:Name="deleteWaterButton" Content="Видалити" Click="deleteWaterButton_Click" Margin="67,462,239,25" Width="Auto" Grid.Column="1" Foreground="White" Background="#FF4165E2" />
+                                <Label Content="Початкові дані лічильника" Grid.Column="2" HorizontalAlignment="Left" Margin="140,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.368,-0.423"/>
+                                <TextBox Grid.Column="2" HorizontalAlignment="Left" x:Name="waterCounterStart" Height="23" Margin="140,41,0,0" TextWrapping="Wrap" Text="2085" VerticalAlignment="Top" Width="157"/>
+                                <Label Content="Значення лічильника" Grid.Column="2" HorizontalAlignment="Left" Margin="140,79,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.368,-0.423"/>
+                                <TextBox Grid.Column="2" HorizontalAlignment="Left" x:Name="waterCounterValue" Height="23" Margin="140,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
+                                <Label Content="Тариф" Grid.Column="2" HorizontalAlignment="Left" Margin="139,151,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.368,-0.423"/>
+                                <TextBox Grid.Column="2" HorizontalAlignment="Left" x:Name="waterTariff" Height="23" Margin="139,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" Text="20,04"/>
+                                <Button Content="Розрахувати" Grid.Column="2" HorizontalAlignment="Left" Margin="169,462,0,0" VerticalAlignment="Top" Width="98" Click="Button_Click_1" Background="#FF4165E2" Foreground="White" Height="30"/>
+                                <DatePicker Grid.Column="2" HorizontalAlignment="Left" x:Name="waterDate" Margin="140,236,0,0" VerticalAlignment="Top" Width="156"/>
+                                <Image HorizontalAlignment="Left" Height="46" Margin="10,8,0,0" VerticalAlignment="Top" Width="51" Source="res/water.png"/>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Опалення">
+                            <Image HorizontalAlignment="Left" Height="46" Margin="10,8,0,0" VerticalAlignment="Top" Width="51" Source="res/heat.png"/>
+                        </TabItem>
+                        <TabItem Header="Газопостачання">
+                            <Grid Background="#FFE5E5E5" Margin="0,0,0,-3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="70*"/>
+                                    <ColumnDefinition Width="387*"/>
+                                    <ColumnDefinition Width="307*"/>
+                                </Grid.ColumnDefinitions>
+                                <DataGrid AutoGenerateColumns="False" x:Name="gasGrid" Margin="0,57,181,78" Grid.ColumnSpan="3">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Binding="{Binding Date}" Header="Дата" Width="*"/>
+                                        <DataGridTextColumn Binding="{Binding CounterNumber}" Header="Номер лічильника" Width="*"/>
+                                        <DataGridTextColumn Binding="{Binding PrevValue}" Header="Попередні показники" Width="*"/>
+                                        <DataGridTextColumn Binding="{Binding CurrentValue}" Header="Поточні показники" Width="*"/>
+                                        <DataGridTextColumn Binding="{Binding Price}" Header="Ціна до сплати" Width="*"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                                <Button x:Name="b" Content="Оновити" Click="updateButton_Click" Margin="25,462,351,25" Width="Auto" Grid.ColumnSpan="2" Foreground="White" Background="#FF4165E2" />
+                                <Button x:Name="deleteGasbtn" Content="Видалити" Click="deleteGasbtn_Click" Margin="67,462,239,25" Width="Auto" Grid.Column="1" Foreground="White" Background="#FF4165E2" />
+                                <Label Content="Попередні показники" Grid.Column="2" HorizontalAlignment="Left" Margin="140,82,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.368,-0.423"/>
+                                <TextBox Grid.Column="2" HorizontalAlignment="Left" x:Name="gasPrev"  Height="23" Margin="140,113,0,0" TextWrapping="Wrap" Text="2085" VerticalAlignment="Top" Width="157"/>
+                                <Label Content="Поточні показники" Grid.Column="2" HorizontalAlignment="Left" Margin="140,151,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.368,-0.423"/>
+                                <TextBox Grid.Column="2" HorizontalAlignment="Left" x:Name="gasCurr"  Height="23" Margin="140,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
+                                <Label Content="Тариф" Grid.Column="2" HorizontalAlignment="Left" Margin="139,223,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.368,-0.423"/>
+                                <TextBox Grid.Column="2" HorizontalAlignment="Left" x:Name="gasTariff"  Height="23" Margin="139,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" Text="17,04"/>
+                                <Button Content="Розрахувати" Grid.Column="2" HorizontalAlignment="Left" Margin="169,462,0,0" VerticalAlignment="Top" Width="98" Click="Button_Click_2" Background="#FF4165E2" Foreground="White" Height="30"/>
+                                <DatePicker Grid.Column="2" HorizontalAlignment="Left" x:Name="gasDate"  Margin="140,308,0,0" VerticalAlignment="Top" Width="156"/>
+                                <Label Content="Номер лічильника" Grid.Column="2" HorizontalAlignment="Left" Margin="140,10,0,0" VerticalAlignment="Top"/>
+                                <TextBox Grid.Column="2" x:Name="gasCounter" HorizontalAlignment="Left" Height="23" Margin="141,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="11111"/>
+                                <Image HorizontalAlignment="Left" Height="46" Margin="10,8,0,0" VerticalAlignment="Top" Width="51" Source="res/gas.png"/>
+                            </Grid>
+                        </TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Витрати" Height="60">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
