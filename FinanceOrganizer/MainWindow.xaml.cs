@@ -4,8 +4,11 @@ using DAL.Entities;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System;
+using System.Data;
 using System.Data.Entity;
+using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace FinanceOrganazer
 {
@@ -14,15 +17,12 @@ namespace FinanceOrganazer
     {
         DatabaseContext _context;
         ChartService cs;
+
         public MainWindow()
         {
             InitializeComponent();
 
             cs = new ChartService();
-
-            this.pieChart1.Series = cs.buildPie();
-
-            this.pieChart1.LegendLocation = LegendLocation.Bottom;
 
             _context = new DatabaseContext();
             _context.Electricity.Load();
@@ -32,7 +32,31 @@ namespace FinanceOrganazer
             electricityGrid.ItemsSource = _context.Electricity.Local.ToBindingList();
             waterGrid.ItemsSource = _context.Water.Local.ToBindingList();
             gasGrid.ItemsSource = _context.Gas.Local.ToBindingList();
+
+            drawChart();
+
+
             this.Closing += MainWindow_Closing;
+        }
+
+
+        public void drawChart()
+        {
+            //PieChart
+            var query1 = (from x in _context.Electricity where x.Date.Month == DateTime.Now.Month orderby x.Id descending select x.Price).FirstOrDefault();
+            var query2 = (from x in _context.Water where x.Date.Month == DateTime.Now.Month orderby x.Id descending select x.Price).FirstOrDefault();
+            var query3 = (from x in _context.Gas where x.Date.Month == DateTime.Now.Month orderby x.Id descending select x.Price).FirstOrDefault();
+
+            double val1 = Convert.ToDouble(query1);
+            double val2 = Convert.ToDouble(query2);
+            double val3 = Convert.ToDouble(query3);
+
+            this.pieChart1.Series = cs.buildPie(val1, val2, 0, val3);
+
+            decimal sum = Math.Round((decimal)(val1 + val2 + val3), 2);
+            this.pieChart1.LegendLocation = LegendLocation.Bottom;
+
+            this.sumLabel.Content = "Витрати за поточний міссяць становлять: "+sum.ToString();
         }
 
         private void Chart_OnDataClick(object sender, ChartPoint chartpoint)
@@ -163,7 +187,17 @@ namespace FinanceOrganazer
 
         private void TabControl_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
+            string tabItem = ((sender as TabControl).SelectedItem as TabItem).Header as string;
 
+            switch (tabItem)
+            {
+                case "Витрати":
+                    drawChart();
+                    break;
+
+                default:
+                    return;
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
@@ -221,6 +255,40 @@ namespace FinanceOrganazer
         {
            
 
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            //TextBlock x1 = this.electricityGrid.Columns[6].GetCellContent(this.electricityGrid.Items[this.electricityGrid.Items.Count-2]) as TextBlock;
+            //TextBlock x2 = this.waterGrid.Columns[2].GetCellContent(this.waterGrid.Items[this.waterGrid.Items.Count - 2]) as TextBlock;
+            //TextBlock x3 = this.gasGrid.Columns[4].GetCellContent(this.gasGrid.Items[this.gasGrid.Items.Count - 2]) as TextBlock;
+
+        }
+
+        private void TabItem_Loaded(object sender, RoutedEventArgs e)
+        {
+            drawChart();
+        }
+
+        private void tabItem2_Clicked(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MessageBox.Show("+");
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            string elSearch = this.electSearch.Text;
+
+            if (!String.IsNullOrEmpty(elSearch))
+            {
+                var query = (from q in _context.Electricity where q.EndValue.ToString() == elSearch select q).ToList();
+                electricityGrid.ItemsSource = query;
+            }
+            else
+            {
+                electricityGrid.ItemsSource = _context.Electricity.Local.ToBindingList();
+            }
+           
         }
     }
 
