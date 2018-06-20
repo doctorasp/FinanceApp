@@ -48,6 +48,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EF\DatabaseContext.cs" />
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\Car.cs" />
+    <Compile Include="Entities\Salary.cs" />
+    <Compile Include="Entities\Transport.cs" />
+    <Compile Include="Entities\Eat.cs" />
     <Compile Include="Entities\Gas.cs" />
     <Compile Include="Entities\Heat.cs" />
     <Compile Include="Entities\Water.cs" />

@@ -1,0 +1,22 @@
+﻿<Window x:Class="FinanceOrganazer.AddWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FinanceOrganazer"
+        mc:Ignorable="d"
+        Title="AddWindow" Height="343.262" Width="603.901">
+    <Grid>
+        <Button Content="Додати витрату" HorizontalAlignment="Left" Margin="424,244,0,0" VerticalAlignment="Top" Width="120" Height="45" Click="Button_Click"/>
+        <ComboBox Name="categories" IsEditable="True"
+ IsReadOnly="True"
+ Text="-- Виберіть категорію --" HorizontalAlignment="Left" DisplayMemberPath="CategoryName"
+                  SelectedValuePath="Id"  Margin="299,71,0,0" VerticalAlignment="Top" Width="245" Height="26"/>
+        
+        <Label Content="Категорія" HorizontalAlignment="Left" Margin="125,71,0,0" VerticalAlignment="Top"/>
+        <Label Content="Ціна" HorizontalAlignment="Left" Margin="125,138,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Name="Price" Height="23" Margin="299,141,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="245"/>
+        <DatePicker HorizontalAlignment="Left" Name="Date" Margin="299,203,0,0" VerticalAlignment="Top" Width="245"/>
+        <Label Content="Дата" HorizontalAlignment="Left" Margin="125,201,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>

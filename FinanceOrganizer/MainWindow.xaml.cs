@@ -2,6 +2,7 @@
 using DAL.EF;
 using DAL.Entities;
 using LiveCharts;
+using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using System;
 using System.Data;
@@ -15,9 +16,10 @@ namespace FinanceOrganazer
 
     public partial class MainWindow : Window
     {
-        DatabaseContext _context;
+        public DatabaseContext _context;
         ChartService cs;
 
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -34,11 +36,115 @@ namespace FinanceOrganazer
             gasGrid.ItemsSource = _context.Gas.Local.ToBindingList();
 
             drawChart();
+            drawDoughnut();
 
+
+            DataContext = this;
 
             this.Closing += MainWindow_Closing;
         }
 
+        public void drawDoughnut()
+        {
+            var eatQ = (from x in _context.Eat where x.Date.Month == DateTime.Now.Month orderby x.Id descending select x.Price).Sum();
+            double eat = Double.Parse(eatQ.ToString()); 
+
+            SeriesCollection = new SeriesCollection()
+            {
+                new PieSeries
+                {
+                    Title = "Комуналка",
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(1400) },
+                    DataLabels = true
+                },
+                new PieSeries
+                {
+                    Title = "Їжа",
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(eat) },
+                    DataLabels = true
+                },
+                new PieSeries
+                {
+                    Title = "Транспорт",
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(400) },
+                    DataLabels = true
+                },
+                new PieSeries
+                {
+                    Title = "Зарплата",
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(1200) },
+                    DataLabels = true
+                },
+                new PieSeries
+                {
+                    Title = "Машина",
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(0) },
+                    DataLabels = true
+                }
+            };
+    }
+        public SeriesCollection SeriesCollection { get; set; }
+
+
+        private void UpdateAllOnClick(object sender, RoutedEventArgs e)
+        {
+            var r = new Random();
+
+            foreach (var series in SeriesCollection)
+            {
+                foreach (var observable in series.Values.Cast<ObservableValue>())
+                {
+                    observable.Value = r.Next(0, 10);
+                }
+            }
+        }
+
+        private void AddSeriesOnClick(object sender, RoutedEventArgs e)
+        {
+            var r = new Random();
+            var c = SeriesCollection.Count > 0 ? SeriesCollection[0].Values.Count : 5;
+
+            var vals = new ChartValues<ObservableValue>();
+
+            for (var i = 0; i < c; i++)
+            {
+                vals.Add(new ObservableValue(r.Next(0, 10)));
+            }
+
+            SeriesCollection.Add(new PieSeries
+            {
+                Values = vals
+            });
+        }
+
+        private void RemoveSeriesOnClick(object sender, RoutedEventArgs e)
+        {
+            if (SeriesCollection.Count > 0)
+                SeriesCollection.RemoveAt(0);
+        }
+
+        private void AddValueOnClick(object sender, RoutedEventArgs e)
+        {
+            var r = new Random();
+            foreach (var series in SeriesCollection)
+            {
+                series.Values.Add(new ObservableValue(r.Next(0, 10)));
+            }
+        }
+
+        private void RemoveValueOnClick(object sender, RoutedEventArgs e)
+        {
+            foreach (var series in SeriesCollection)
+            {
+                if (series.Values.Count > 0)
+                    series.Values.RemoveAt(0);
+            }
+        }
+
+        private void RestartOnClick(object sender, RoutedEventArgs e)
+        {
+            Chart.Update(true, true);
+        }
 
         public void drawChart()
         {
@@ -58,6 +164,8 @@ namespace FinanceOrganazer
 
             this.sumLabel.Content = "Витрати за поточний міссяць становлять: "+sum.ToString();
         }
+
+
 
         private void Chart_OnDataClick(object sender, ChartPoint chartpoint)
         {
@@ -289,6 +397,11 @@ namespace FinanceOrganazer
                 electricityGrid.ItemsSource = _context.Electricity.Local.ToBindingList();
             }
            
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            new AddWindow(this).Show();
         }
     }
 

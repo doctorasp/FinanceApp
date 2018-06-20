@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Linq;
 using LiveCharts;
+using LiveCharts.Defaults;
 using LiveCharts.Wpf;
+using LiveCharts.Wpf.Charts.Base;
 
 namespace BLL.Services
 {
@@ -9,6 +12,7 @@ namespace BLL.Services
 
         Func<ChartPoint, string> labelPoint = chartPoint =>
             string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
+        
 
         public SeriesCollection buildPie(double val1=0, double val2 =0, double val3 =0, double val4 = 0)
         {
@@ -49,5 +53,6 @@ namespace BLL.Services
             };
             return s;
         }
-    }
+
+        }
 }

@@ -10,9 +10,18 @@ namespace DAL.EF
         {
             Database.SetInitializer<DatabaseContext>(new StoreDbInitializer());
         }
+        //Комуналка
         public DbSet<Electricity> Electricity { get; set; }
         public DbSet<Water> Water { get; set; }
         public DbSet<Gas> Gas { get; set; }
+
+        //Витрати
+        public DbSet<Category> Category { get; set; }
+        public DbSet<Eat> Eat { get; set; }
+        public DbSet<Transport> Transport { get; set; }
+        public DbSet<Salary> Salary { get; set; }
+        public DbSet<Car> Car { get; set; }
+
     }
 
     public class StoreDbInitializer : CreateDatabaseIfNotExists<DatabaseContext>
