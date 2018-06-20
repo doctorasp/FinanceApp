@@ -46,15 +46,66 @@ namespace FinanceOrganazer
 
         public void drawDoughnut()
         {
-            var eatQ = (from x in _context.Eat where x.Date.Month == DateTime.Now.Month orderby x.Id descending select x.Price).Sum();
-            double eat = Double.Parse(eatQ.ToString()); 
+            double eat = 0, tr = 0, sal = 0, car = 0;
+
+            if (!_context.Eat.Any())
+            {
+                eat = 0;
+            }
+            else
+            {
+                var eatQ = (from x in _context.Eat where x.Date.Month == DateTime.Now.Month orderby x.Id descending select x.Price).Sum();
+                eat = Double.Parse(eatQ.ToString());
+            };
+
+            if (!_context.Transport.Any())
+            {
+                tr = 0;
+            }
+            else
+            {
+                var trQ = (from x in _context.Transport where x.Date.Month == DateTime.Now.Month orderby x.Id descending select x.Price).Sum();
+                tr = Double.Parse(trQ.ToString());
+            };
+
+            if (!_context.Salary.Any())
+            {
+                sal = 0;
+            }
+            else
+            {
+                var salQ = (from x in _context.Salary where x.Date.Month == DateTime.Now.Month orderby x.Id descending select x.Price).Sum();
+                sal = Double.Parse(salQ.ToString());
+
+            };
+
+            if (!_context.Car.Any())
+            {
+                car = 0;
+            }
+            else
+            {
+                var carQ = (from x in _context.Car where x.Date.Month == DateTime.Now.Month orderby x.Id descending select x.Price).Sum();
+                car = Double.Parse(carQ.ToString());
+            };
+
+            //Комуналка
+            var query1 = (from x in _context.Electricity where x.Date.Month == DateTime.Now.Month orderby x.Id descending select x.Price).FirstOrDefault();
+            var query2 = (from x in _context.Water where x.Date.Month == DateTime.Now.Month orderby x.Id descending select x.Price).FirstOrDefault();
+            var query3 = (from x in _context.Gas where x.Date.Month == DateTime.Now.Month orderby x.Id descending select x.Price).FirstOrDefault();
+
+            double val1 = Convert.ToDouble(query1);
+            double val2 = Convert.ToDouble(query2);
+            double val3 = Convert.ToDouble(query3);
+
+            double sum = Math.Round((val1 + val2 + val3), 2);
 
             SeriesCollection = new SeriesCollection()
             {
                 new PieSeries
                 {
                     Title = "Комуналка",
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(1400) },
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(sum) },
                     DataLabels = true
                 },
                 new PieSeries
@@ -66,22 +117,23 @@ namespace FinanceOrganazer
                 new PieSeries
                 {
                     Title = "Транспорт",
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(400) },
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(tr) },
                     DataLabels = true
                 },
                 new PieSeries
                 {
                     Title = "Зарплата",
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(1200) },
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(sal) },
                     DataLabels = true
                 },
                 new PieSeries
                 {
                     Title = "Машина",
-                    Values = new ChartValues<ObservableValue> { new ObservableValue(0) },
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(car) },
                     DataLabels = true
                 }
             };
+            this.Chart.Series = SeriesCollection;
     }
         public SeriesCollection SeriesCollection { get; set; }
 
@@ -302,6 +354,9 @@ namespace FinanceOrganazer
                 case "Витрати":
                     drawChart();
                     break;
+                case "Фінанси":
+                    drawDoughnut();
+                    break;
 
                 default:
                     return;
@@ -402,6 +457,11 @@ namespace FinanceOrganazer
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
             new AddWindow(this).Show();
+        }
+
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            new DeleteWindow(this).Show();
         }
     }
 

@@ -10,8 +10,10 @@ namespace FinanceOrganazer
     public partial class AddWindow : Window
     {
         DatabaseContext _context;
+        MainWindow main = null;
         public AddWindow(MainWindow m)
         {
+            main = m;
             InitializeComponent();
 
             _context = m._context;
@@ -79,6 +81,8 @@ namespace FinanceOrganazer
                     default:
                         break;
                 }
+                main.drawDoughnut();
+
             }
             else
             {
