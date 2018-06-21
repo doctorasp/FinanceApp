@@ -18,6 +18,7 @@ namespace FinanceOrganazer
     {
         public DatabaseContext _context;
         ChartService cs;
+        decimal outcomeSum = 0;
 
         
         public MainWindow()
@@ -30,6 +31,8 @@ namespace FinanceOrganazer
 
             drawChart();
             drawDoughnut();
+            drawIncomeChart();
+
 
 
             DataContext = this;
@@ -128,6 +131,7 @@ namespace FinanceOrganazer
             };
             this.Chart.Series = SeriesCollection;
             this.spendingSum.Text = "-"+(sum + eat + tr + sal + car).ToString();
+            outcomeSum = (decimal)(sum + eat + tr + sal + car);
     }
         public SeriesCollection SeriesCollection { get; set; }
 
@@ -209,6 +213,15 @@ namespace FinanceOrganazer
             this.pieChart1.LegendLocation = LegendLocation.Bottom;
 
             this.spendingComSum.Text = "-"+sum.ToString();
+        }
+
+        public void drawIncomeChart()
+        {
+            var incomeSum = (from x in _context.Income where x.Date.Month == DateTime.Now.Month orderby x.Id descending select x.Price).Sum();
+
+            this.incomeChart.Series = cs.buildIncome((double)incomeSum, (double)outcomeSum);
+            this.incomeChart.LegendLocation = LegendLocation.Right;
+            this.incomeSum.Text = "+" + incomeSum;
         }
 
 
@@ -303,6 +316,11 @@ namespace FinanceOrganazer
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
             new AddCom(this).Show();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new AddIncome(this).Show();
         }
     }
 

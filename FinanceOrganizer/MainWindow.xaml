@@ -25,7 +25,7 @@
         <Label Content="v1.0 (64-bit)" HorizontalAlignment="Left" Margin="74,32,0,0" VerticalAlignment="Top" Foreground="#FF636363" FontSize="11" Width="68" Grid.ColumnSpan="2"/>
 
         <TabControl HorizontalAlignment="Left" SelectionChanged="TabControl_SelectionChanged"  Height="590" Margin="10,67,0,-68" VerticalAlignment="Top" Width="852" TabStripPlacement="Left" Grid.ColumnSpan="4" Grid.RowSpan="2">
-            <TabItem Header="Домашня" Height="60">
+            <TabItem Header="Витрати" Height="60">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -47,6 +47,26 @@
                     <TextBox IsReadOnly="true" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="spendingSum" HorizontalAlignment="Left" Height="23" Margin="290,31,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="125"/>
                     <Label Content="Витрати за поточний місяць:" HorizontalAlignment="Left" Margin="135,70,0,0" Grid.Row="1" VerticalAlignment="Top"/>
                     <Label Content="Витрати:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="326,7,0,0" Grid.RowSpan="2"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Прибуток" Height="60">
+                <Grid Background="White">
+
+                    <lvc:CartesianChart Name="incomeChart" Series="{Binding SeriesCollection}" LegendLocation="Left" Margin="83,70,107,98">
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Title=" " Labels="{Binding Labels}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="" LabelFormatter="{Binding Formatter}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
+                    
+                    <Button Content="Додати" HorizontalAlignment="Left" Margin="208,535,0,0" VerticalAlignment="Top" Width="98" Height="28" Background="#FF4165E2" Foreground="White" Click="Button_Click"/>
+                    <Button Content="Видалити" HorizontalAlignment="Left" Margin="396,535,0,0" VerticalAlignment="Top" Width="98" Height="28" Background="#FF4165E2" Foreground="White"  RenderTransformOrigin="0.467,0.609"/>
+                    <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="723"/>
+                    <TextBox IsReadOnly="true" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="incomeSum" HorizontalAlignment="Left" Height="23" Margin="290,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125"/>
+                    <Label Content="Прибуток:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="326,7,0,0"/>
+
                 </Grid>
             </TabItem>
             <TabItem Header="Комунальні платежі" Height="60">

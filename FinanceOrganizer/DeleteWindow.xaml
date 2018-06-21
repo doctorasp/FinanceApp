@@ -25,7 +25,7 @@
                             <DataGridTextColumn Binding="{Binding Price}" Header="Ціна" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content="Видалити" HorizontalAlignment="Left" Margin="180,204,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+                    <Button Content="Видалити" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="350,205,0,0" Width="98" Height="28" Background="#FF4165E2" Foreground="White" Click="Button_Click"  Grid.ColumnSpan="2"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Їжа">
@@ -37,7 +37,7 @@
                             <DataGridTextColumn Binding="{Binding Price}" Header="Ціна" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content="Видалити" HorizontalAlignment="Left" Margin="172,208,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+                    <Button Content="Видалити" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="350,205,0,0" Width="98" Height="28" Background="#FF4165E2" Foreground="White" Click="Button_Click_1"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Транспорт">
@@ -49,7 +49,7 @@
                             <DataGridTextColumn Binding="{Binding Price}" Header="Ціна" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content="Видалити" HorizontalAlignment="Left" Margin="172,210,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
+                    <Button Content="Видалити" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="350,205,0,0" Width="98" Height="28" Background="#FF4165E2" Foreground="White" Click="Button_Click_2"/>
                 </Grid>
             </TabItem>
 
@@ -62,7 +62,7 @@
                             <DataGridTextColumn Binding="{Binding Price}" Header="Ціна" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content="Видалити" HorizontalAlignment="Left" Margin="177,204,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_3"/>
+                    <Button Content="Видалити" HorizontalAlignment="Left"  VerticalAlignment="Top" Margin="350,205,0,0" Width="98" Height="28" Background="#FF4165E2" Foreground="White" Click="Button_Click_3"/>
                 </Grid>
             </TabItem>
         </TabControl>

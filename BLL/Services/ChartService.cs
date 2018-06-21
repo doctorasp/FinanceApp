@@ -45,5 +45,31 @@ namespace BLL.Services
             return s;
         }
 
+        public SeriesCollection buildIncome(double incomeSum, double outcomeSum )
+        {
+            SeriesCollection s = new SeriesCollection
+            {
+                new ColumnSeries
+                {
+                    Title = "Прибуток за поточний місяць",
+                    Values = new ChartValues<double> { incomeSum}
+                }
+            };
+
+            s.Add(new ColumnSeries
+            {
+                Title = "Витрати за поточний місяць",
+                Values = new ChartValues<double> { outcomeSum }
+            });
+
+            Labels = new[] { "Maria" };
+            Formatter = value => value.ToString("N");
+
+            return s;
         }
+
+        public string[] Labels { get; set; }
+        public Func<double, string> Formatter { get; set; }
+
+    }
 }

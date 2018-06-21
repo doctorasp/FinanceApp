@@ -85,7 +85,9 @@ namespace FinanceOrganazer
                     default:
                         break;
                 }
+                this.Close();
                 main.drawDoughnut();
+                main.drawIncomeChart();
 
             }
             else

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="AddWindow" Height="343.262" Width="580.773">
     <Grid>
-        <Button Content="Додати витрату" HorizontalAlignment="Left" Margin="424,255,0,0" VerticalAlignment="Top" Width="120" Height="34" Click="Button_Click"/>
+        <Button Content="Додати витрату" HorizontalAlignment="Left" Margin="424,255,0,0" VerticalAlignment="Top" Background="#FF4165E2" Width="98" Height="28" Click="Button_Click" Foreground="White"/>
         <ComboBox Name="categories" IsEditable="True"
  IsReadOnly="True"
  Text="-- Виберіть категорію --" HorizontalAlignment="Left" DisplayMemberPath="CategoryName"

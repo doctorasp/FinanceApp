@@ -22,6 +22,9 @@ namespace DAL.EF
         public DbSet<Salary> Salary { get; set; }
         public DbSet<Car> Car { get; set; }
 
+        //Прибуток
+        public DbSet<Income> Income { get; set; }
+
     }
 
     public class StoreDbInitializer : CreateDatabaseIfNotExists<DatabaseContext>
