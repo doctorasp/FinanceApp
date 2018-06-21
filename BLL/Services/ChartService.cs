@@ -14,7 +14,7 @@ namespace BLL.Services
             string.Format("{0} ({1:P})", chartPoint.Y, chartPoint.Participation);
         
 
-        public SeriesCollection buildPie(double val1=0, double val2 =0, double val3 =0, double val4 = 0)
+        public SeriesCollection buildPie(double val1=0, double val2 =0, double val4 = 0)
         {
             SeriesCollection s = new SeriesCollection()
             {
@@ -26,15 +26,6 @@ namespace BLL.Services
                     LabelPoint = labelPoint
                 },
                 
-
-                   new PieSeries
-                {
-                    Title = "Опалення",
-                    Values = new ChartValues<double> {val3},
-                    DataLabels = true,
-                    LabelPoint = labelPoint
-                },
-
                     new PieSeries
                 {
                     Title = "Електроенергія",

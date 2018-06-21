@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="643.447" Width="881.5">
+        Title="MainWindow" Height="693.447" Width="881.5">
 
     <Grid Margin="0,0,2,73">
         <Grid.ColumnDefinitions>
@@ -24,147 +24,32 @@
         <Label Content="Finance Free" HorizontalAlignment="Left" Margin="69,3,0,0" VerticalAlignment="Top" Background="{x:Null}" FontSize="22" FontWeight="Bold" Foreground="#FF636363" Grid.ColumnSpan="2"/>
         <Label Content="v1.0 (64-bit)" HorizontalAlignment="Left" Margin="74,32,0,0" VerticalAlignment="Top" Foreground="#FF636363" FontSize="11" Width="68" Grid.ColumnSpan="2"/>
 
-        <TabControl HorizontalAlignment="Left" SelectionChanged="TabControl_SelectionChanged"  Height="545" Margin="10,67,0,-73" VerticalAlignment="Top" Width="852" TabStripPlacement="Left" Grid.ColumnSpan="4" Grid.RowSpan="2">
-            <TabItem Header="Комуналка" Height="60">
-                <Grid Background="#FFE5E5E5">
-                    <TabControl HorizontalAlignment="Left" Height="542" Margin="0,0,0,-3" VerticalAlignment="Top" Width="769" SelectionChanged="TabControl_SelectionChanged">
-                        <TabItem Header="Електроенергія">
-                            <Grid Background="White">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="79*"/>
-                                    <ColumnDefinition Width="19*"/>
-                                    <ColumnDefinition Width="17*"/>
-                                    <ColumnDefinition Width="141*"/>
-                                    <ColumnDefinition Width="143*"/>
-                                    <ColumnDefinition Width="364*"/>
-                                </Grid.ColumnDefinitions>
-
-                                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="772" Grid.ColumnSpan="6" Margin="0,450,-9,0"/>
-
-                                <DataGrid AutoGenerateColumns="False" x:Name="electricityGrid" Margin="0,59,181,75" Grid.ColumnSpan="6" >
-
-
-
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Binding="{Binding Date}" Header="Дата" Width="*"/>
-                                        <DataGridTextColumn Binding="{Binding StartValue}" Header="Початкові показники" Width="*"/>
-                                        <DataGridTextColumn Binding="{Binding EndValue}" Header="Кінцеві показники" Width="*"/>
-                                        <DataGridTextColumn Binding="{Binding Consumed}" Header="Спожито кВт∙год" Width="*"/>
-                                        <DataGridTextColumn Binding="{Binding PricePer100}" Header="Ціна до 100* кВт∙год" Width="*"/>
-                                        <DataGridTextColumn Binding="{Binding PriceAmong100}" Header="понад 100* кВт∙год" Width="*"/>
-                                        <DataGridTextColumn Binding="{Binding Price}" Header="Загальна сума" Width="*"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                                <Button x:Name="updateButton" Content="Оновити" Click="updateButton_Click" Margin="25,462,10,22" Width="Auto" Grid.ColumnSpan="3" Foreground="White" Background="#FF4165E2" />
-                                <Button x:Name="deleteButton" Content="Видалити" Click="deleteButton_Click" Margin="22,462,39,22" Width="Auto" Grid.Column="3" Foreground="White" Background="#FF4165E2" />
-                                <TextBox Grid.Column="5" HorizontalAlignment="Left" x:Name="startPrice" Height="23" Margin="197,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
-                                <Label Content="Початкові показники:" Grid.Column="5" HorizontalAlignment="Left" Margin="196,59,0,0" VerticalAlignment="Top"/>
-                                <TextBox Grid.Column="5" HorizontalAlignment="Left" x:Name="endPrice"  Height="23" Margin="197,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
-                                <Label Content="Кінцеві показники:" Grid.Column="5"  HorizontalAlignment="Left" Margin="197,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.482,-0.115"/>
-                                <DatePicker Grid.Column="5" HorizontalAlignment="Left" x:Name="date" Margin="197,205,0,0" VerticalAlignment="Top" Width="157"/>
-                                <Label Content="Поточна дата:" Grid.Column="5"  HorizontalAlignment="Left" Margin="197,174,0,0" VerticalAlignment="Top"/>
-                                <TextBox Grid.Column="5" HorizontalAlignment="Left" x:Name="tariffPer100" Height="23" Margin="197,278,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" Text="0,9"/>
-                                <Label Content="Тариф до 100* кВт∙год" Grid.Column="5"  HorizontalAlignment="Left" Margin="197,247,0,0" VerticalAlignment="Top"/>
-                                <TextBox Grid.Column="5" HorizontalAlignment="Left" x:Name="tariffAmong100" Height="24" Margin="197,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" Text="1,68"/>
-                                <Label Content="Понад до 100* кВт∙год" Grid.Column="5"  HorizontalAlignment="Left" Margin="196,319,0,0" VerticalAlignment="Top"/>
-                                <Button Content="Розрахувати" Grid.Column="5" HorizontalAlignment="Left" Margin="230,462,0,0" VerticalAlignment="Top" Width="98" Click="Button_Click" Foreground="White" Background="#FF4165E2" Height="30"/>
-                                <Image HorizontalAlignment="Left" Height="46" Margin="10,8,0,0" VerticalAlignment="Top" Width="51" Source="res/elect.png" Stretch="Fill"/>
-                                <TextBox Grid.ColumnSpan="4" x:Name="electSearch" Grid.Column="2" HorizontalAlignment="Left" Height="23" Margin="10,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="555" TextChanged="TextBox_TextChanged"/>
-                                <Button Content="Пошук" Grid.Column="5" HorizontalAlignment="Left" Margin="282,19,0,0" VerticalAlignment="Top" Width="72" Click="Button_Click_4"/>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Вода">
-                            <Grid Background="White" Margin="0,0,0,-3">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="70*"/>
-                                    <ColumnDefinition Width="387*"/>
-                                    <ColumnDefinition Width="307*"/>
-                                </Grid.ColumnDefinitions>
-                                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="772" Grid.ColumnSpan="3" Margin="-9,453,0,0"/>
-                                <DataGrid AutoGenerateColumns="False" x:Name="waterGrid" Margin="0,62,181,78" Grid.ColumnSpan="3">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Binding="{Binding Date}" Header="Дата" Width="*"/>
-                                        <DataGridTextColumn Binding="{Binding CounterValue}" Header="Значення лічильника" Width="*"/>
-                                        <DataGridTextColumn Binding="{Binding Price}" Header="Ціна до сплати" Width="*"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                                <Button x:Name="updateWaterButton" Content="Оновити" Click="updateButton_Click" Margin="25,462,351,25" Width="Auto" Grid.ColumnSpan="2" Foreground="White" Background="#FF4165E2" />
-                                <Button x:Name="deleteWaterButton" Content="Видалити" Click="deleteWaterButton_Click" Margin="67,462,239,25" Width="Auto" Grid.Column="1" Foreground="White" Background="#FF4165E2" />
-                                <Label Content="Початкові дані лічильника" Grid.Column="2" HorizontalAlignment="Left" Margin="141,62,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.368,-0.423"/>
-                                <TextBox Grid.Column="2" HorizontalAlignment="Left" x:Name="waterCounterStart" Height="23" Margin="141,93,0,0" TextWrapping="Wrap" Text="2085" VerticalAlignment="Top" Width="157"/>
-                                <Label Content="Значення лічильника" Grid.Column="2" HorizontalAlignment="Left" Margin="141,131,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.368,-0.423"/>
-                                <TextBox Grid.Column="2" HorizontalAlignment="Left" x:Name="waterCounterValue" Height="23" Margin="141,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
-                                <Label Content="Тариф" Grid.Column="2" HorizontalAlignment="Left" Margin="140,203,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.368,-0.423"/>
-                                <TextBox Grid.Column="2" HorizontalAlignment="Left" x:Name="waterTariff" Height="23" Margin="140,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" Text="20,04"/>
-                                <Button Content="Розрахувати" Grid.Column="2" HorizontalAlignment="Left" Margin="169,462,0,0" VerticalAlignment="Top" Width="98" Click="Button_Click_1" Background="#FF4165E2" Foreground="White" Height="30"/>
-                                <DatePicker Grid.Column="2" HorizontalAlignment="Left" x:Name="waterDate" Margin="141,301,0,0" VerticalAlignment="Top" Width="156"/>
-                                <Image HorizontalAlignment="Left" Height="46" Margin="10,8,0,0" VerticalAlignment="Top" Width="51" Source="res/water.png"/>
-                                <Label Content="Дата" Grid.Column="2" HorizontalAlignment="Left" Margin="140,270,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.368,-0.423"/>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Опалення">
-                            <Image HorizontalAlignment="Left" Height="46" Margin="10,8,0,0" VerticalAlignment="Top" Width="51" Source="res/heat.png"/>
-                        </TabItem>
-                        <TabItem Header="Газопостачання">
-                            <Grid Background="White" Margin="0,0,0,-3">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="70*"/>
-                                    <ColumnDefinition Width="387*"/>
-                                    <ColumnDefinition Width="307*"/>
-                                </Grid.ColumnDefinitions>
-                                <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="772" Grid.ColumnSpan="3" Margin="-9,453,0,0"/>
-                                <DataGrid AutoGenerateColumns="False" x:Name="gasGrid" Margin="0,57,181,78" Grid.ColumnSpan="3">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Binding="{Binding Date}" Header="Дата" Width="*"/>
-                                        <DataGridTextColumn Binding="{Binding CounterNumber}" Header="Номер лічильника" Width="*"/>
-                                        <DataGridTextColumn Binding="{Binding PrevValue}" Header="Попередні показники" Width="*"/>
-                                        <DataGridTextColumn Binding="{Binding CurrentValue}" Header="Поточні показники" Width="*"/>
-                                        <DataGridTextColumn Binding="{Binding Price}" Header="Ціна до сплати" Width="*"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                                <Button x:Name="b" Content="Оновити" Click="updateButton_Click" Margin="25,462,351,25" Width="Auto" Grid.ColumnSpan="2" Foreground="White" Background="#FF4165E2" />
-                                <Button x:Name="deleteGasbtn" Content="Видалити" Click="deleteGasbtn_Click" Margin="67,462,239,25" Width="Auto" Grid.Column="1" Foreground="White" Background="#FF4165E2" />
-                                <Label Content="Попередні показники" Grid.Column="2" HorizontalAlignment="Left" Margin="141,132,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.368,-0.423"/>
-                                <TextBox Grid.Column="2" HorizontalAlignment="Left" x:Name="gasPrev"  Height="23" Margin="141,163,0,0" TextWrapping="Wrap" Text="2085" VerticalAlignment="Top" Width="157"/>
-                                <Label Content="Поточні показники" Grid.Column="2" HorizontalAlignment="Left" Margin="141,201,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.368,-0.423"/>
-                                <TextBox Grid.Column="2" HorizontalAlignment="Left" x:Name="gasCurr"  Height="23" Margin="141,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
-                                <Label Content="Тариф" Grid.Column="2" HorizontalAlignment="Left" Margin="140,273,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.368,-0.423"/>
-                                <TextBox Grid.Column="2" HorizontalAlignment="Left" x:Name="gasTariff"  Height="23" Margin="140,304,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157" Text="17,04"/>
-                                <Button Content="Розрахувати" Grid.Column="2" HorizontalAlignment="Left" Margin="169,462,0,0" VerticalAlignment="Top" Width="98" Click="Button_Click_2" Background="#FF4165E2" Foreground="White" Height="30"/>
-                                <DatePicker Grid.Column="2" HorizontalAlignment="Left" x:Name="gasDate"  Margin="141,371,0,0" VerticalAlignment="Top" Width="156"/>
-                                <Label Content="Номер лічильника" Grid.Column="2" HorizontalAlignment="Left" Margin="141,60,0,0" VerticalAlignment="Top"/>
-                                <TextBox Grid.Column="2" x:Name="gasCounter" HorizontalAlignment="Left" Height="23" Margin="142,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Text="11111"/>
-                                <Image HorizontalAlignment="Left" Height="46" Margin="10,8,0,0" VerticalAlignment="Top" Width="51" Source="res/gas.png"/>
-                                <Label Content="Дата" Grid.Column="2" HorizontalAlignment="Left" Margin="140,340,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.368,-0.423"/>
-                            </Grid>
-                        </TabItem>
-                    </TabControl>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Фінанси" Height="60">
+        <TabControl HorizontalAlignment="Left" SelectionChanged="TabControl_SelectionChanged"  Height="590" Margin="10,67,0,-68" VerticalAlignment="Top" Width="852" TabStripPlacement="Left" Grid.ColumnSpan="4" Grid.RowSpan="2">
+            <TabItem Header="Домашня" Height="60">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Grid.Row="0" Orientation="Horizontal"/>
-                    <lvc:PieChart Name="Chart" Grid.Row="1" Series="{Binding SeriesCollection}" 
+                    <lvc:PieChart x:Name="Chart" Grid.Row="1" Series="{Binding SeriesCollection}" 
                       LegendLocation="Right" InnerRadius="100" Margin="146,116,112,99">
                         <lvc:PieChart.ChartLegend>
-                            <lvc:DefaultLegend BulletSize="20"></lvc:DefaultLegend>
+                            <lvc:DefaultLegend BulletSize="20"/>
                         </lvc:PieChart.ChartLegend>
                         <lvc:PieChart.DataTooltip>
-                            <lvc:DefaultTooltip BulletSize="20"></lvc:DefaultTooltip>
+                            <lvc:DefaultTooltip BulletSize="20"/>
                         </lvc:PieChart.DataTooltip>
                     </lvc:PieChart>
                     <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="54" Grid.RowSpan="2" VerticalAlignment="Top" Width="772"/>
-                    <Button Content="Додати" HorizontalAlignment="Left" Margin="188,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="23" Background="#FF4165E2" Foreground="White" Click="Button_Click_5"/>
-                    <Button Content="Видалити" HorizontalAlignment="Left" Margin="460,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Height="23" Background="#FF4165E2" Foreground="White" Click="Button_Click_6"/>
-                    <TextBox IsReadOnly="true" HorizontalAlignment="Left" Height="23" Margin="302,10,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Button Content="Додати" HorizontalAlignment="Left" Margin="195,532,0,0" Grid.Row="1" VerticalAlignment="Top" Width="98" Height="28" Background="#FF4165E2" Foreground="White" Click="Button_Click_5"/>
+                    <Button Content="Видалити" HorizontalAlignment="Left" Margin="383,532,0,0" Grid.Row="1" VerticalAlignment="Top" Width="98" Height="28" Background="#FF4165E2" Foreground="White" Click="Button_Click_6" RenderTransformOrigin="0.467,0.609"/>
+                    <TextBox IsReadOnly="true" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="spendingSum" HorizontalAlignment="Left" Height="23" Margin="290,31,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="125"/>
                     <Label Content="Витрати за поточний місяць:" HorizontalAlignment="Left" Margin="135,70,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+                    <Label Content="Витрати:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="326,7,0,0" Grid.RowSpan="2"/>
                 </Grid>
             </TabItem>
-            <TabItem Header="Витрати" Height="60">
+            <TabItem Header="Комунальні платежі" Height="60">
                 <Grid Background="White">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="9*"/>
@@ -176,10 +61,7 @@
                     </Grid.ColumnDefinitions>
                     <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="772" Grid.ColumnSpan="2"/>
                     <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="54" Margin="-110,-71,-98,0" VerticalAlignment="Top" Width="772"/>
-
-                    <Label Content="Графік витрат:" HorizontalAlignment="Left" Margin="28,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.158,0"/>
-                    <Label Content="Витрати за поточний місяць становлять:" x:Name="sumLabel" Grid.Column="1" HorizontalAlignment="Left" Margin="126,10,0,0" VerticalAlignment="Top"/>
-                    <lvc:PieChart x:Name="pieChart1" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}" Grid.ColumnSpan="2" Background="White" Margin="111,71,97,81" Grid.RowSpan="2">
+                    <lvc:PieChart x:Name="pieChart1" LegendLocation="Bottom" DataClick="Chart_OnDataClick" Hoverable="False" DataTooltip="{x:Null}" Grid.ColumnSpan="2" Background="White" Margin="146,116,112,99" Grid.RowSpan="2">
                         <!--<lvc:PieChart.Series>
                             <lvc:PieSeries Title="Електроенергія" Values="5" DataLabels="True"
                                LabelPoint="{Binding PointLabel}"/>
@@ -191,6 +73,10 @@
                                LabelPoint="{Binding PointLabel}"/>
                         </lvc:PieChart.Series>-->
                     </lvc:PieChart>
+                    <TextBox IsReadOnly="true" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" x:Name="spendingComSum" HorizontalAlignment="Left" Height="23" Margin="290,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="125" Grid.ColumnSpan="2"/>
+                    <Label Content="Витрати" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,5,0,0" Grid.Column="1"/>
+                    <Label Content="Витрати за поточний місяць:" HorizontalAlignment="Left" Margin="135,70,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Дані" HorizontalAlignment="Left" Margin="0,415,0,0" VerticalAlignment="Top" Width="106" Height="28" Background="#FF4165E2" Foreground="White" Click="Button_Click_7" Grid.Row="1" Grid.Column="1"/>
                 </Grid>
             </TabItem>
         </TabControl>
