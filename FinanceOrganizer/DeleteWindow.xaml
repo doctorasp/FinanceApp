@@ -20,7 +20,7 @@
                     </Grid.ColumnDefinitions>
                     <DataGrid Name="salary" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="178" VerticalAlignment="Top" Width="458" Grid.ColumnSpan="2">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Id}" Header="Id" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding Name}" Header="Назва" Width="*"/>
                             <DataGridTextColumn Binding="{Binding Date}" Header="Дата" Width="*"/>
                             <DataGridTextColumn Binding="{Binding Price}" Header="Ціна" Width="*"/>
                         </DataGrid.Columns>
@@ -32,7 +32,7 @@
                 <Grid Background="#FFE5E5E5">
                     <DataGrid AutoGenerateColumns="False" x:Name="eat" HorizontalAlignment="Left" Height="178" VerticalAlignment="Top" Width="458">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Id}" Header="Id" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding Name}" Header="Назва" Width="*"/>
                             <DataGridTextColumn Binding="{Binding Date}" Header="Дата" Width="*"/>
                             <DataGridTextColumn Binding="{Binding Price}" Header="Ціна" Width="*"/>
                         </DataGrid.Columns>
@@ -44,7 +44,7 @@
                 <Grid Background="#FFE5E5E5">
                     <DataGrid AutoGenerateColumns="False" x:Name="transport" HorizontalAlignment="Left" Height="178" VerticalAlignment="Top" Width="458">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Id}" Header="Id" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding Name}" Header="Назва" Width="*"/>
                             <DataGridTextColumn Binding="{Binding Date}" Header="Дата" Width="*"/>
                             <DataGridTextColumn Binding="{Binding Price}" Header="Ціна" Width="*"/>
                         </DataGrid.Columns>
@@ -57,7 +57,7 @@
                 <Grid Background="#FFE5E5E5">
                     <DataGrid AutoGenerateColumns="False" x:Name="car" HorizontalAlignment="Left" Height="178" VerticalAlignment="Top" Width="458">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Id}" Header="Id" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding Name}" Header="Назва" Width="*"/>
                             <DataGridTextColumn Binding="{Binding Date}" Header="Дата" Width="*"/>
                             <DataGridTextColumn Binding="{Binding Price}" Header="Ціна" Width="*"/>
                         </DataGrid.Columns>

@@ -5,18 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FinanceOrganazer"
         mc:Ignorable="d"
-        Title="AddWindow" Height="343.262" Width="603.901">
+        Title="AddWindow" Height="343.262" Width="580.773">
     <Grid>
-        <Button Content="Додати витрату" HorizontalAlignment="Left" Margin="424,244,0,0" VerticalAlignment="Top" Width="120" Height="45" Click="Button_Click"/>
+        <Button Content="Додати витрату" HorizontalAlignment="Left" Margin="424,255,0,0" VerticalAlignment="Top" Width="120" Height="34" Click="Button_Click"/>
         <ComboBox Name="categories" IsEditable="True"
  IsReadOnly="True"
  Text="-- Виберіть категорію --" HorizontalAlignment="Left" DisplayMemberPath="CategoryName"
-                  SelectedValuePath="Id"  Margin="299,71,0,0" VerticalAlignment="Top" Width="245" Height="26"/>
-        
-        <Label Content="Категорія" HorizontalAlignment="Left" Margin="125,71,0,0" VerticalAlignment="Top"/>
-        <Label Content="Ціна" HorizontalAlignment="Left" Margin="125,138,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Name="Price" Height="23" Margin="299,141,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="245"/>
+                  SelectedValuePath="Id"  Margin="299,69,0,0" VerticalAlignment="Top" Width="245" Height="26"/>
+
+        <Label Content="Категорія" HorizontalAlignment="Left" Margin="125,69,0,0" VerticalAlignment="Top"/>
+        <Label Content="Ціна" HorizontalAlignment="Left" Margin="125,163,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.418,1.425"/>
+        <TextBox HorizontalAlignment="Left" Name="Price" Height="23" Margin="299,163,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="245"/>
         <DatePicker HorizontalAlignment="Left" Name="Date" Margin="299,203,0,0" VerticalAlignment="Top" Width="245"/>
         <Label Content="Дата" HorizontalAlignment="Left" Margin="125,201,0,0" VerticalAlignment="Top"/>
+        <Label Content="Назва" HorizontalAlignment="Left" Margin="125,112,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" x:Name="Name" Height="23" Margin="299,115,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="245"/>
     </Grid>
 </Window>

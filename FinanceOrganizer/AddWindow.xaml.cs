@@ -31,6 +31,7 @@ namespace FinanceOrganazer
                 {
                     case "Їжа":
                         Eat eat = new Eat {
+                            Name = this.Name.Text,
                             Price = Convert.ToDecimal(this.Price.Text),
                             Date = Convert.ToDateTime(this.Date.Text),
                             CategoryId = Convert.ToInt32(this.categories.SelectedValue)
@@ -45,6 +46,7 @@ namespace FinanceOrganazer
                     case "Транспорт":
                         Transport tr = new Transport
                         {
+                            Name = this.Name.Text,
                             Price = Convert.ToDecimal(this.Price.Text),
                             Date = Convert.ToDateTime(this.Date.Text),
                             CategoryId = Convert.ToInt32(this.categories.SelectedValue)
@@ -57,6 +59,7 @@ namespace FinanceOrganazer
                     case "Машина":
                         Car car = new Car
                         {
+                            Name = this.Name.Text,
                             Price = Convert.ToDecimal(this.Price.Text),
                             Date = Convert.ToDateTime(this.Date.Text),
                             CategoryId = Convert.ToInt32(this.categories.SelectedValue)
@@ -69,6 +72,7 @@ namespace FinanceOrganazer
                     case "Зарплата":
                         Salary salary = new Salary
                         {
+                            Name = this.Name.Text,
                             Price = Convert.ToDecimal(this.Price.Text),
                             Date = Convert.ToDateTime(this.Date.Text),
                             CategoryId = Convert.ToInt32(this.categories.SelectedValue)
