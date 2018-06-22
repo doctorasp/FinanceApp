@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Windows.Media;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
@@ -52,7 +53,9 @@ namespace BLL.Services
                 new ColumnSeries
                 {
                     Title = "Прибуток за поточний місяць",
-                    Values = new ChartValues<double> { incomeSum}
+                    Values = new ChartValues<double> { incomeSum},
+                    Fill = new SolidColorBrush(Colors.Green)
+                   
                 }
             };
 
@@ -62,7 +65,6 @@ namespace BLL.Services
                 Values = new ChartValues<double> { outcomeSum }
             });
 
-            Labels = new[] { "Maria" };
             Formatter = value => value.ToString("N");
 
             return s;
